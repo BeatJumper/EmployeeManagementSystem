@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 public class login {
     public static void main(String[] args){
@@ -18,75 +19,66 @@ public class login {
 
     public void loginFrame() {
         JFrame f = new JFrame();
-        f.setSize(500, 550);  // 增加界面高度到 500x550
+        f.setSize(800, 500);  // 调整窗口大小为 800x500
         f.setTitle("欢迎来到员工管理系统2025~");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
-        FlowLayout layout = new FlowLayout();
-        f.setLayout(layout);
+        f.setLayout(new BorderLayout());  // 使用 BorderLayout 布局
 
-        // 创建输入框部分
-        JLabel label1 = new JLabel("UID");
-        JLabel label2 = new JLabel("pwd");
-        //JLabel label3 = new JLabel("西北工业大学数据库系统课程设计");
-        JTextField id = new JTextField();
-        JPasswordField password = new JPasswordField();
-
-        JButton button = new JButton("login！");
-        Dimension d1 = new Dimension(150, 35);
-        label1.setPreferredSize(d1);
-        label2.setPreferredSize(d1);
-        //label3.setPreferredSize(d1);
-        Dimension d2 = new Dimension(200, 35);
-        id.setPreferredSize(d2);
-        password.setPreferredSize(d2);
-        Dimension d3 = new Dimension(400, 35);
-        button.setPreferredSize(d3);
-        //label3.setBounds(0, 500, 400, 35);
-
-        f.add(label1);
-        f.add(id);
-        f.add(label2);
-        f.add(password);
-        f.add(button);
-
-        // 增加图片
-        // 创建一个面板，用来放置图片
+        // 左侧图片部分
         JPanel imagePanel = new JPanel();
         imagePanel.setLayout(new BorderLayout());
+        imagePanel.setPreferredSize(new Dimension(320, 500));  // 左侧占窗口宽度的 2/6
 
-        // 加载图片
-        ImageIcon backgroundIcon = new ImageIcon("res/login.jpg"); // 图片路径
+        ImageIcon backgroundIcon = new ImageIcon("res/OIP.jpg"); // 图片路径
         if (backgroundIcon.getIconWidth() == -1) {
             System.out.println("图片加载失败，检查图片路径！");
         } else {
-            // 缩放图片
             Image backgroundImage = backgroundIcon.getImage();
-            Image scaledImage = backgroundImage.getScaledInstance(500, 300, Image.SCALE_SMOOTH); // 缩放图片
+            Image scaledImage = backgroundImage.getScaledInstance(320, 500, Image.SCALE_SMOOTH); // 缩放图片
             ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-            // 显示图片
             JLabel backgroundLabel = new JLabel(scaledIcon);
-            backgroundLabel.setHorizontalAlignment(JLabel.CENTER);  // 图片居中显示
+            backgroundLabel.setHorizontalAlignment(JLabel.CENTER);
             imagePanel.add(backgroundLabel, BorderLayout.CENTER);
-
-            // 将图片面板添加到 JFrame 的 South（底部）区域
-            f.add(imagePanel, BorderLayout.SOUTH);
         }
-        // 增加文本
-        JPanel textPanel = new JPanel();  // 创建一个面板用于显示文本
-        textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));  // 居中显示文本
 
-        // 创建 JLabel 来显示文本
+        // 右侧登录界面部分
+        JPanel loginPanel = new JPanel();
+        loginPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
+        loginPanel.setPreferredSize(new Dimension(480, 500));  // 右侧占窗口宽度的 4/6
+
+        JLabel label1 = new JLabel("UID");
+        JLabel label2 = new JLabel("pwd");
+        JTextField id = new JTextField();
+        JPasswordField password = new JPasswordField();
+        JButton button = new JButton("login！");
+
+        Dimension d1 = new Dimension(150, 35);
+        label1.setPreferredSize(d1);
+        label2.setPreferredSize(d1);
+        Dimension d2 = new Dimension(200, 35);
+        id.setPreferredSize(d2);
+        password.setPreferredSize(d2);
+        Dimension d3 = new Dimension(200, 35);
+        button.setPreferredSize(d3);
+
+        loginPanel.add(label1);
+        loginPanel.add(id);
+        loginPanel.add(label2);
+        loginPanel.add(password);
+        loginPanel.add(button);
+
+        // 添加文本说明
         JLabel textLabel = new JLabel("西北工业大学软件工程实验课程设计");
-        textLabel.setFont(new Font("微软雅黑", Font.PLAIN, 26));  // 设置字体和大小
-        textLabel.setForeground(Color.BLACK);  // 设置字体颜色
+        textLabel.setFont(new Font("微软雅黑", Font.PLAIN, 18));
+        textLabel.setForeground(Color.BLACK);
+        loginPanel.add(textLabel);
 
-        // 将文本标签添加到面板
-        textPanel.add(textLabel);
+        // 将左右两部分添加到主窗口
+        f.add(imagePanel, BorderLayout.WEST);
+        f.add(loginPanel, BorderLayout.CENTER);
 
-        // 将文本面板添加到 JFrame 的 South（底部）区域
-        f.add(textPanel, BorderLayout.SOUTH);
         f.setVisible(true);
         f.setResizable(false);
 
@@ -96,11 +88,10 @@ public class login {
             public void actionPerformed(ActionEvent actionEvent) {
                 String idText = id.getText();
                 String passwordText = new String(password.getPassword());
-                String sql = null;
                 try {
                     Connection conn = util.getConn();
                     Statement statement = conn.createStatement();
-                    sql = "select count(M_ID), M_ID, R_ID from member where M_ID=" + idText + " and m_password=" + passwordText;
+                    String sql = "select count(M_ID), M_ID, R_ID from member where M_ID=" + idText + " and m_password=" + passwordText;
                     ResultSet rs = statement.executeQuery(sql);
                     rs.next();
                     String R_ID = rs.getString("R_ID");
@@ -125,5 +116,21 @@ public class login {
                 }
             }
         });
+    }
+
+    public boolean validateCredentials(String idText, String passwordText) {
+        String sql = "select count(M_ID) from member where M_ID=? and m_password=?";
+        try (Connection conn = util.getConn();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, idText);
+            pstmt.setString(2, passwordText);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // 返回是否匹配成功
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

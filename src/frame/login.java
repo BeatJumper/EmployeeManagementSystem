@@ -1,3 +1,20 @@
+///
+/// @file login.java
+/// @brief 登录界面
+/// @author kangyk (1253@mail.nwpu.edu.cn)
+/// @version 1.1
+/// @date 2025-06-05
+///
+/// @copyright Copyright (c) 2025
+///
+/// @par 修改日志:
+/// <table>
+/// <tr><th>Date       <th>Version <th>Author  <th>Description
+/// <tr><td>2025-05-20 <td>1.0     <td>kangyk  <td>新建
+/// <tr><td>2025-05-29 <td>1.1     <td>kangyk  <td>图片嵌入
+/// </table>
+///
+
 package frame;
 
 import DButils.util;

@@ -1,3 +1,19 @@
+///
+/// @file t_UpdateView.java
+/// @brief 修改
+/// @author kangyk (1253@mail.nwpu.edu.cn)
+/// @version 1.1
+/// @date 2025-06-05
+///
+/// @copyright Copyright (c) 2025
+///
+/// @par 修改日志:
+/// <table>
+/// <tr><th>Date       <th>Version <th>Author  <th>Description
+/// <tr><td>2025-05-20 <td>1.0     <td>kangyk  <td>新建
+/// </table>
+///
+
 package frame;
 
 import DAO.trainDAO;
@@ -65,15 +81,15 @@ public class t_UpdateView extends JFrame {
                 String train_achieve = train_achieveText.getText();
 
                 if(T_ID == null || "".equals(T_ID)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入时间ID", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入时间ID*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if(train_content == null || "".equals(train_content)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入培训内容", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入培训内容*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if(train_achieve == null || "".equals(train_achieve)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入培训成果", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入培训成果*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 

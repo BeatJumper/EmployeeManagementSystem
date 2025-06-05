@@ -34,14 +34,16 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="assertj-swing">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/mysql-connector-j-9.1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/assertj-swing-3.17.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/assertj-core-3.24.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="libs" level="project" />
   </component>
 </module>

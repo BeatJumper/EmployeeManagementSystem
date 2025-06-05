@@ -1,3 +1,21 @@
+///
+/// @file r_UpdateView.java
+/// @brief 登录界面
+/// @author kangyk (1253@mail.nwpu.edu.cn)
+/// @version 2.0
+/// @date 2025-06-05
+///
+/// @copyright Copyright (c) 2025
+///
+/// @par 修改日志:
+/// <table>
+/// <tr><th>Date       <th>Version <th>Author  <th>Description
+/// <tr><td>2025-05-20 <td>1.0     <td>kangyk  <td>新建
+/// <tr><td>2025-05-29 <td>1.1     <td>kangyk  <td>注释增加
+/// <tr><td>2025-06-05 <td>2.0     <td>kangyk  <td>字符串优化，必填提示
+/// </table>
+///
+
 package frame;
 
 
@@ -79,19 +97,19 @@ public class r_UpdateView extends JFrame {
                 String rewards_Name = rnameText.getText();
                 String rewards_type = typeText.getText();
                 if(M_ID == null || "".equals(M_ID)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入员工ID", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入员工ID*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if(rewards_ID == null || "".equals(rewards_ID)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入奖惩ID", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入奖惩ID*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if(rewards_Name == null || "".equals(rewards_Name)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入奖惩名称", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入奖惩名称*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if(rewards_type == null || "".equals(rewards_type)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入奖惩类型", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入奖惩类型*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 rewards_log rewardsLog = new rewards_log();

@@ -1,3 +1,20 @@
+///
+/// @file rewards_view.java
+/// @brief 奖励试图
+/// @author 四维数组
+/// @version 1.1
+/// @date 2025-05-29
+///
+/// @copyright Copyright (c) 2025
+///
+/// @par 修改日志:
+/// <table>
+/// <tr><th>Date       <th>Version <th>Author       <th>Description
+/// <tr><td>2025-05-20 <td>1.0     <td>siweishuzu   <td>新建
+/// <tr><td>2025-05-29 <td>1.1     <td>siweishuzu   <td>注释增加
+/// </table>
+///
+
 package frame;
 
 import DAO.rewardsDAO;

@@ -1,3 +1,20 @@
+///
+/// @file e_UpdateView.java
+/// @brief 更新视图
+/// @author 四维数组
+/// @version 1.1
+/// @date 2025-05-29
+///
+/// @copyright Copyright (c) 2025
+///
+/// @par 修改日志:
+/// <table>
+/// <tr><th>Date       <th>Version <th>Author       <th>Description
+/// <tr><td>2025-05-20 <td>1.0     <td>siweishuzu   <td>新建
+/// <tr><td>2025-05-29 <td>1.1     <td>siweishuzu   <td>注释增加
+/// </table>
+///
+
 package frame;
 
 import DAO.evectionDAO;
@@ -65,15 +82,15 @@ public class e_UpdateView extends JFrame {
                 String objective = objectiveText.getText();
 
                 if(T_ID == null || "".equals(T_ID)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入时间ID", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入时间ID*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if(destination == null || "".equals(destination)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入出差地点", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入出差地点*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if(objective == null || "".equals(objective)){
-                    JOptionPane.showMessageDialog(contentPane, "请输入出差目的", "系统提示", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "请输入出差目的*", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 

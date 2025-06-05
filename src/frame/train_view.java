@@ -1,3 +1,20 @@
+///
+/// @file train_view.java
+/// @brief 训练试图
+/// @author 四维数组
+/// @version 1.1
+/// @date 2025-05-29
+///
+/// @copyright Copyright (c) 2025
+///
+/// @par 修改日志:
+/// <table>
+/// <tr><th>Date       <th>Version <th>Author       <th>Description
+/// <tr><td>2025-05-20 <td>1.0     <td>siweishuzu   <td>新建
+/// <tr><td>2025-05-29 <td>1.1     <td>siweishuzu   <td>注释增加
+/// </table>
+///
+
 package frame;
 
 import DAO.trainDAO;
@@ -8,7 +25,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 public class train_view extends JFrame {
     private JPanel contentPane;
@@ -133,13 +153,25 @@ public class train_view extends JFrame {
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
         tableModel.setRowCount(0);// 刷新
         // 填充数据
+        // 随机生成 2025 年 5 月内的时间
+        Random random = new Random();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
         for (train_log item : list) {
             String[] arr = new String[5];
             arr[0] = item.getT_ID() + "";
             arr[1] = item.gettrain_content();
             arr[2] = item.gettrain_achieve();
-            arr[3] = "2023-7-12";
-            arr[4] = "2023-9-28";
+            // 随机生成开始时间
+            Calendar startDate = Calendar.getInstance();
+            startDate.set(2025, Calendar.MAY, random.nextInt(31) + 1); // 2025 年 5 月的随机日期
+            arr[3] = sdf.format(startDate.getTime());
+
+            // 随机生成结束时间，确保结束时间大于开始时间
+            Calendar endDate = (Calendar) startDate.clone();
+            endDate.add(Calendar.DAY_OF_MONTH, random.nextInt(31 - startDate.get(Calendar.DAY_OF_MONTH)) + 1);
+            arr[4] = sdf.format(endDate.getTime());
+
             // 添加数据到表格
             tableModel.addRow(arr);
         }
